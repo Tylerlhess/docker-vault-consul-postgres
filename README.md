@@ -4,7 +4,7 @@ Dockerized Vault with Consul backend
 
 ## Overview
 
-This is a handy repo that gets a dockerized Vault server up, using Consul as a backend. Setting this us was much harder (for me anyway) than I felt it should be, so I wanted to make this config available for anyone else struggling to make this work.
+This is a handy repo that gets a dockerized Vault server up, using Consul as a backend. Setting this up was much harder (for me anyway) than I felt it should be, so I wanted to make this config available for anyone else struggling to make this work.
 
 I tested this on Mac OS X, with Docker in swarm mode, and it's working there. 
 
@@ -15,7 +15,7 @@ I tested this on Mac OS X, with Docker in swarm mode, and it's working there.
 1. Run: `cd docker-vault-consul`
 1. Run: `docker-compose up -d`
 1. Run: `sh ./vault/vault-init.sh`
-1. Add secrets (some examples of how to do this are commented out in the vault-init script)
+1. Add secrets *(some examples of how to do this are commented out in the vault-init script)*
 
 
 ## Features
@@ -28,4 +28,4 @@ I tested this on Mac OS X, with Docker in swarm mode, and it's working there.
 
 ## Things to watch out for
 
-* Since this uses a custom network, if you want other containers to be able to get to the vault you'll need to add those networks to the docker-compose.yml file for the vault service.
+* Since this uses a custom network, if you want other containers to be able to get to the vault you'll need to add those networks to the docker-compose.yml file, and to the vault service.
