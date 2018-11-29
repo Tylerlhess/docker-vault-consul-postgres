@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+
+  # vault server
+  vault:
+    image: "vault:latest"
+    volumes:
+      - "./vault/config:/config"
+      - "./vault/policies:/policies"
+      - vault-logs:/vault/logs
+    networks:
+      - "vault"
+    cap_add:
+      - "IPC_LOCK"
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_ADDR: "http://127.0.0.1:8200"
+    entrypoint: "vault server -config=/config/consul-config.json"
+    links:
+      - "vault-db"
+    depends_on:
+      - "vault-db"
+    labels:
+      com.myapp.description: "vault server"
+  
+  # vault data store
+  vault-db:
+    image: "consul:latest"
+    networks:
+      - "vault"
+    ports:
+      - "8300:8300"
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+    command: "agent -server -bind=0.0.0.0 -client 0.0.0.0 -bootstrap-expect=1"
+    labels:
+      com.myapp.description: "vault data store"
+
+
+networks:
+
+  # vault gets its own network
+  vault: 
+
+volumes:
+  
+  # used for the vault logfiles
+  vault-logs:
+    labels:
+      com.myapp.description: "vault log files"

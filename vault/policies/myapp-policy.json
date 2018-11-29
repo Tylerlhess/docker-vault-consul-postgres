@@ -1,0 +1,13 @@
+{
+    "path": {
+        "secret/apps/myapp/*": {
+            "capabilities": [
+                "create",
+                "read",
+                "update",
+                "delete",
+                "list"
+            ]
+        }
+    }
+}

@@ -1,0 +1,8 @@
+# -------------------------------------------------
+# docker stuff I find useful
+# -------------------------------------------------
+alias vault="docker exec -i $(docker ps|awk '/vault:latest/ {print $1}') vault"
+alias openvault="vault operator unseal $Unseal_Key_1; vault operator unseal $Unseal_Key_2; vault operator unseal $Unseal_Key_3"
+alias file2vault="cat $1| vault kv put $2 value=-" # arg1=filepath  arg2=vaultpath
+alias cip="docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}'" # pass in a container ID to get the IP for it
+alias cips="docker ps -q |xargs docker inspect --format '{{.Name}} : {{range .NetworkSettings.Networks}}{{.IPAddress}}, {{end}}'" # get all the IPs for every container
