@@ -6,7 +6,7 @@ Dockerized Vault with Consul backend
 
 This is a handy repo that gets a dockerized Vault server up, using Consul as a backend. Setting this up was much harder (for me anyway) than I felt it should be, so I wanted to make this config available for anyone else struggling to make this work.
 
-I tested this on Mac OS X, with Docker in swarm mode, and it's working there. 
+I tested this on Mac OS X, with Docker (both in swarm mode, and not) and it's working there. 
 
 
 ## Installation
