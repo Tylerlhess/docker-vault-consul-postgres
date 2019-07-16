@@ -20,11 +20,12 @@ services:
     entrypoint: "vault server -config=/config/consul-config.json"
     links:
       - "vault-db"
+      - "postgres"
     depends_on:
       - "vault-db"
     labels:
       com.myapp.description: "vault server"
-  
+
   # vault data store
   vault-db:
     image: "consul:latest"
@@ -39,14 +40,31 @@ services:
     labels:
       com.myapp.description: "vault data store"
 
+  # Postgres DB
+  postgres:
+    image: postgres:10.9-alpine
+    hostname: postgres
+    volumes:
+      - "./usda-r18-1.0:/docker-entrypoint-initdb.d"
+    environment:
+      #terribly secure I know.
+      POSTGRES_USER: AdminGuyTy
+      POSTGRES_PASSWORD: Ineedajob
+      POSTGRES_DB: usda
+    networks:
+      - "vault"
+    ports:
+      - "5432:5432"
+    labels:
+      com.myapp.description: "postgres database"
+
+
 
 networks:
-
   # vault gets its own network
-  vault: 
+  vault:
 
 volumes:
-  
   # used for the vault logfiles
   vault-logs:
     labels:
