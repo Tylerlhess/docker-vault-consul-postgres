@@ -11,4 +11,5 @@ This is a fork of rossja/docker-vault-consul adding to it postgres.
 1. Clone the repo: `git clone https://github.com/tylerlhess/docker-vault-consul-postgres.git`
 1. Run: `cd docker-vault-consul`
 1. Run: `docker-compose up -d`
-1. Run: `python3 pythonScript.py`
+1. Run: `python3 pythonScript.py [ <container_IP> ]`
+  If you are running on a Unix based machine provide the Docker container's IP as the first argument.
